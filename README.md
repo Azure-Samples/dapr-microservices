@@ -48,7 +48,7 @@ To get started with these Dapr microservices, follow the steps below:
 
 - **Description:** Manages product inventory and handles product orders.
 - **Features:** Pub/Sub for ordering and returning materials, inventory management.
-- **API:** [API Documentation](inventory-management/README.md)
+- **API:** [API Documentation](InventoryManagement/README.md)
 
 ## Contributing
 
