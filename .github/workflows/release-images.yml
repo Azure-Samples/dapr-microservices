@@ -29,14 +29,13 @@ jobs:
           tag=${{ github.sha }}
           tag="latest"
           dockerfile_path="./$dir/Dockerfile"
-          
+
           if [ -f "$dockerfile_path" ]; then
             echo "Building Docker image for $dir"
             docker buildx build -t ghcr.io/$repo_owner/$image_name:$tag -f "$dockerfile_path" "$dir" -o type=registry
           else
             echo "Skipping build for $dir - Dockerfile not found"
           fi
-        done
         done
 
       env:
