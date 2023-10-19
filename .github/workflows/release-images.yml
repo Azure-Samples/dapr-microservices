@@ -25,7 +25,7 @@ jobs:
           dir=${dir%*/}
           image_name=${{ github.repository }}-$(echo $dir | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
           tag=${{ github.sha }}
-          docker buildx build -t ghcr.io/${{ github.repository_owner }}/$$image_name:$$tag -f ./$dir/Dockerfile ./$dir -o type=registry,registry.insecure=true
+          docker buildx build -t ghcr.io/${{ github.repository_owner }}/$image_name:$tag -f ./$dir/Dockerfile ./$dir -o type=registry,registry.insecure=true
         done
         done
 
