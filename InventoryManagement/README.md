@@ -49,8 +49,8 @@ This microservice uses Dapr's Pub/Sub feature to enable communication between di
 
 ### ProductsOrderController
 
-- `POST /productsorder/request`: Request materials by placing an order.
-- `PUT /productsorder/return`: Return materials to the inventory.
+- `POST /productsorder`: Request materials by placing an order.
+- `PUT /productsorder`: Return materials to the inventory.
 
 ## Samples
 
@@ -74,7 +74,7 @@ Content-Type: application/json
 To place an order and request materials, make a POST request to `/productsorder/request`. Provide the order details in the request body.
 
 ```http
-POST http://localhost:5050/productsorder/request
+POST http://localhost:5050/productsorder
 Content-Type: application/json
 
 {
@@ -88,8 +88,8 @@ Content-Type: application/json
 
 ### Return Materials
 
-To return materials to the inventory, make a PUT request to `/productsorder/return` with the `inventoryRequestId` parameter.
+To return materials to the inventory, make a PUT request to `/productsorder` with the `inventoryRequestId` parameter.
 
 ```http
-PUT http://localhost:5050/productsorder/return?inventoryRequestId=your_request_id
+PUT http://localhost:5050/productsorder?inventoryRequestId=your_request_id
 ```
