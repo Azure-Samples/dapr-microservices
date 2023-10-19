@@ -1,6 +1,5 @@
 using Dapr;
 using Dapr.Client;
-using SimulatedProductionDevice.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
