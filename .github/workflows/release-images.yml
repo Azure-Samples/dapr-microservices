@@ -1,0 +1,32 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to GitHub Container Registry
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build and Publish Docker Images
+      run: |
+        for dir in */; do
+          dir=${dir%*/}
+          image_name=$(echo $dir | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
+          tag=${{ github.sha }}
+          docker buildx build -t ghcr.io/${{ github.repository }}/$$image_name:$$tag -f ./$dir -o type=registry,registry.insecure=true
+        done
+
+      env:
+        BUILDKIT_INLINE_CACHE: 1
